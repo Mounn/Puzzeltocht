@@ -15,7 +15,8 @@
       <li><a href="Account">Mijn account<span class="trim"></span></a></li><br>
       <li><span class="trim"></span>Scoreboard</li><br>
       <li><span class="trim"></span>Opties</li><br>
-      <li><span class="trim"></span>Extras</li>
+      <li><span class="trim"></span>Extras</li><br>
+      <li><a href="index.php/welcome/quiz_game">quizz<span class="trim"></span></a></li><br>
     </ul>
     
     

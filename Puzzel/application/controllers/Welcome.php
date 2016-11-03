@@ -26,6 +26,14 @@ class Welcome extends CI_Controller {
 
 	public function puzzeltocht(){
 		$this->load->view('puzzeltocht');
+
 	}
+
+	public function quiz_game(){
+		$this->load->view('quiz_game');
+		$this->load->helper('url');
+
+	}
+
 
 }
