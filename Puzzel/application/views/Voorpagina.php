@@ -1,6 +1,11 @@
 <head>
   <link href='http://fonts.googleapis.com/css?family=Dosis:500' rel='stylesheet' type='text/css'>
-   <link rel="stylesheet" type="text/css" href="voorpagina.css">
+   
+   
+   <link rel = "stylesheet" type = "text/css" 
+   href = "<?php echo base_url(); ?>inc/css/voorpagina.css">
+
+
 </head>
 
 <body>

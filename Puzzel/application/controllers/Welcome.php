@@ -21,7 +21,7 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('voorpagina');
-		
+		$this->load->helper('url');
 	}
 
 	public function puzzeltocht(){
@@ -34,6 +34,5 @@ class Welcome extends CI_Controller {
 		$this->load->helper('url');
 
 	}
-
 
 }
