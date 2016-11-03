@@ -20,6 +20,12 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
-		$this->load->view('puzzel/puzzeltocht');
+		$this->load->view('voorpagina');
+		
 	}
+
+	public function puzzeltocht(){
+		$this->load->view('puzzeltocht');
+	}
+
 }
