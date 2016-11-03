@@ -39,7 +39,7 @@
            <?php 
 		       for ($x=0; $x <3; $x++) { ?>
  
-    <form method="post" action="../welcome/index">
+    <form method="post" action="<?php echo base_url();?>">
   
     
     <p><?=$array3[$x]?>.<?=$array4[$x]?></p>

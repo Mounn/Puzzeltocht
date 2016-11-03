@@ -11,7 +11,7 @@
 	<h1>Speeltocht quizz</h1>
 
 
-<form method="" action="../Questions/quizdisplay">
+<form method="" action="<?php echo base_url();?>index.php/Questions/quizdisplay">
 
   <input type="submit" value="Start">
   
