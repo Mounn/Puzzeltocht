@@ -3,6 +3,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
+<script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
+<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyA_jsH5jPSAsj60eCayjs1Gj58iSXPp3vw"></script>
+<script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
 	<meta charset="utf-8">
 	<title>Welcome to Puzzeltocht</title>
 
@@ -156,39 +162,9 @@ link = '';            bindInfoWindow(marker, map, locations[i][0], description, 
         google.maps.event.addListener(iw, 'closeclick', function () {
             infoWindowVisible(false);
         });
- }   var waypts = [];
-      directionsService = new google.maps.DirectionsService();
-      directionsDisplay = new google.maps.DirectionsRenderer({
-          suppressMarkers: true
-      });
-      if (locations.length > 1){
-          for (var i = 0; i < locations.length; i++) {
-              waypts.push({
-                  location:new google.maps.LatLng(locations[i][5], locations[i][6]),
-                  stopover:true
-              }); 
-          };
-          var request = {
-              origin: new google.maps.LatLng(locations[0][5], locations[0][6]),
-              destination: new google.maps.LatLng(locations[locations.length - 1][5], locations[locations.length - 1][6]),
-              waypoints: waypts,
-              optimizeWaypoints: true,
-              travelMode: google.maps.DirectionsTravelMode.DRIVING
-          };
-          directionsService.route(request, function(response, status) {
-              if (status == google.maps.DirectionsStatus.OK) {
-                  polylineOptions = {
-                      strokeColor: '#00a280',
-                      strokeWeight: '4'
-                  }
-                  directionsDisplay.setOptions({
-                      polylineOptions: polylineOptions
-                  });
-                  directionsDisplay.setDirections(response);
-              }
-          });
-          directionsDisplay.setMap(map);
-       }
+
+        
+ }   
    
 
 }
@@ -213,10 +189,35 @@ link = '';            bindInfoWindow(marker, map, locations[i][0], description, 
 
 <div id='Puzzel'></div>
 
+</br>
+
+<div id="container">
+  <h1>Speeltocht quizz</h1>
+<div id="puzzell">
+<form method="" action="<?php echo base_url();?>index.php/Questions/quizdisplay">
+<input type="button" onclick="javascript:quiz();" value="Start">
+
+<script type="text/javascript">
+
+function quiz(){
+  jQuery.ajax({
+    'url': '<?php echo base_url();?>index.php/Questions/quizdisplay',
+    'success': function(data){
+      jQuery('#puzzell').html(data);
+    }
+  })
+  
+}
 
 
-<script src="https://maps.googleapis.com/maps/api/js?callback=myMap"></script>
-<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyA_jsH5jPSAsj60eCayjs1Gj58iSXPp3vw"></script>
+</script>
+</form>
+</div>
+</div>
+
+  <form method="post" action="<?php echo base_url();?>">
+  <input type="submit" value="Hoofd menu">
+
 
 </body>
 </html>
