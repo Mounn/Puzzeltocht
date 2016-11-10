@@ -194,7 +194,6 @@ link = '';            bindInfoWindow(marker, map, locations[i][0], description, 
 <div id="container">
   <h1>Speeltocht quizz</h1>
 <div id="puzzell">
-<form method="" action="<?php echo base_url();?>index.php/Questions/quizdisplay">
 <input type="button" onclick="javascript:quiz();" value="Start">
 
 <script type="text/javascript">
@@ -209,9 +208,8 @@ function quiz(){
   
 }
 
-
 </script>
-</form>
+
 </div>
 </div>
 

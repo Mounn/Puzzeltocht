@@ -8,11 +8,10 @@
 <body>
 
 <div id="container">
-	<h1>Speel de Quiz!</h1>
-    
-    <form method="post" action="<?php echo base_url();?>index.php/Questions/resultdisplay">
        
-    
+   
+
+
     <?php foreach($questions as $row) { ?>
     
     <?php $ans_array = array($row->choice1, $row->choice2, $row->choice3, $row->answer);
@@ -28,9 +27,31 @@
     <?php } ?>
     
     <br><br>
-    <input type="submit" value="Antwoord!">
+
+    <div id="puzzell">
     
-    </form>
+   
+    <input type="submit" onclick="javascript:quiz();" value="Antwoord">
+
+    <script type="text/javascript">
+
+
+function quiz(){
+  jQuery.ajax({
+    'url': '<?php echo base_url();?>index.php/Questions/resultdisplay',
+    'success': function(data){
+      jQuery('#puzzell').html(data);
+    }
+  })
+  
+}
+
+    </script>
+
+        </div>
+
+            </form>
+    
     
 </div>
 
