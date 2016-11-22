@@ -18,14 +18,33 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/user_guide/general/urls.html
 	 */
+
+ function __construct()
+    {
+        // Call the Model constructor
+        parent::__construct();
+		$this->load->database();
+		$this->load->library('session');
+		$this->load->helper('form');
+        $this->load->library('form_validation');
+		$this->load->model('InformatieModel');
+		$this->load->helper('url');
+		$this->load->library('parser');
+		$this->load->library('session');
+    }
+
+
 	public function index()
 	{
 		$this->load->view('voorpagina');
 		$this->load->helper('url');
+
 	}
 
 	public function puzzeltocht(){
-		$this->load->view('puzzeltocht');
+		$data['getinformatie'] = $this->InformatieModel->GetInformatie();
+		$this->load->view('puzzeltocht', $data);
+
 
 	}
 
@@ -41,6 +60,16 @@ class Welcome extends CI_Controller {
 
 	}
 
+	/*
+	public function Info(){
+		$id = $this->input->post('id');
+		$title = $this->input->post('titel');
+		$information = $this->input->post('informatie');
+		$picture = $this->input->post('foto');
 
+		if ($this->input->post()){
+		$data = $this->InformatieModel->GetInformatie($id,$title,$information,$picture);
+	}
+	*/
 
 }

@@ -22,7 +22,7 @@
       <li><span class="trim"></span>Opties</li><br>
       <li><span class="trim"></span>Extras</li><br>
       <li><a href="index.php/welcome/quiz_game">quizz<span class="trim"></span></a></li><br>
-      <li><a href="index.php/welcome/test">Test<span class="trim"></span></a></li><br>
+      <li><a href="index.php/welcome/select">Test<span class="trim"></span></a></li><br>
 
     </ul>
     
