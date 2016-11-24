@@ -61,7 +61,7 @@
     <br><br>
     
     <h2>Your Score: </h2>
-      <h1><?=$score?>/3</h1>
+      <h1><?=$score?>/1</h1>
     <form method="post" action="<?php echo base_url();?>Index.php/welcome/puzzeltocht">
     <input type="submit" value="Play Again!">
     

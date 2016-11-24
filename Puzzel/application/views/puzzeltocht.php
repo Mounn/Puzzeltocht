@@ -109,6 +109,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 
         var infoWindow = new google.maps.InfoWindow({map: map});
+        
+
         // Try HTML5 geolocation.
         if (navigator.geolocation) {
           navigator.geolocation.getCurrentPosition(function(position) {
@@ -118,10 +120,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             };
 
             infoWindow.setPosition(pos);
-            infoWindow.setContent('<p>Titel: ' + this.title + '</p>' +
-      '<p>Informatie: ' + this.etype + '</p>' +
-      '<p>Foto: ' + this.cause + '</p>' +
-      '<button onclick="javascript:quiz();">Start</button>' + '<div id="puzzell">' + ''
+            infoWindow.setContent('<?php foreach ($getinformatie as $row){ ?><?php } ?>' + '<div id="puzzell">' + '<h1><?php echo $row->titel;?></h1>' + '<p><?php echo $row->informatie;?></p>' + '<p><img style="width:200px;height:130px;" src="<?php echo $row->foto; ?>" /></p></div>' + '<button onclick="javascript:quiz();">Start</button>'
       );
             map.setCenter(pos);
           }, function() {
@@ -138,15 +137,42 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         infoWindow.setContent(browserHasGeolocation ?
                               'Error: The Geolocation service failed.' :
                               'Error: Your browser doesn\'t support geolocation.');
+
       }
+
+      function autoUpdate() {
+  navigator.geolocation.getCurrentPosition(function(position) {  
+    var newPoint = new google.maps.LatLng(position.coords.latitude, 
+                                          position.coords.longitude);
+
+    if (marker) {
+      // Marker already created - Move it
+      marker.setPosition(newPoint);
+    }
+    else {
+      // Marker does not exist - Create it
+      marker = new google.maps.Marker({
+        position: newPoint,
+        map: map
+      });
+    }
+
+    // Center the map on the new position
+    map.setCenter(newPoint);
+  }); 
+
+  // Call the autoUpdate() function every 5 seconds
+  setTimeout(autoUpdate, 5000);
+}
+
+autoUpdate();
     </script>
 
 
 
 <div id="container">
-  <h1>Speeltocht quizz</h1>
+
 <div id="puzzell">
-<input type="button" onclick="javascript:quiz();">
 
 <script type="text/javascript">
 
@@ -169,30 +195,6 @@ function quiz(){
 
   <form method="post" action="<?php echo base_url();?>">
   <input type="submit" value="Hoofd menu">
-
-
-    <table border="1">  
-        <tbody>  
-           <tr>  
-              <td>ID</td>  
-              <td>titel</td> 
-              <td>informatie</td> 
-              <td>foto</td>
-           </tr>     
-           <?php  
-           foreach ($getinformatie as $row)  
-           {  
-              ?><tr>  
-              <td><?php echo $row->id;?></td>  
-              <td><?php echo $row->titel;?></td>  
-              <td><?php echo $row->informatie;?></td> 
-              <td ><?php echo $row->foto;?></td>   
-
-              </tr>  
-           <?php } ?>  
-           </tbody>
-  </table>
-
 
  <script async defer
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA_jsH5jPSAsj60eCayjs1Gj58iSXPp3vw&callback=initMap">
