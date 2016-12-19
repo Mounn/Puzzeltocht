@@ -43,10 +43,11 @@ class Welcome extends CI_Controller {
 
 	public function puzzeltocht(){
 		$data['getinformatie'] = $this->InformatieModel->GetInformatie();
+		$data['getlocatie'] = $this->InformatieModel->GetLocatie();
 		$this->load->view('puzzeltocht', $data);
 
-
 	}
+
 
 	public function quiz_game(){
 		$this->load->view('quiz_game');

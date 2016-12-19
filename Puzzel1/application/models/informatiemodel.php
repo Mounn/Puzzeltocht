@@ -31,4 +31,33 @@ class InformatieModel extends CI_Model
 
   }
 
+public function GetLocatie(){
+    return $this->db->get('locations')->result();
+
+  }
+
+
+  function get_information_by_id($id)
+  {
+    $this->db->where('id', $id);
+    $query = $this->db->get('informatie');
+    return $query->result();
+  }
+  
+
+public function my_data()
+{
+  $userid = $this->session->userdata('userid');
+
+  $data = array();
+  $this->db->select('*');
+  $this->db->from('user_profile');
+  $this->db->where('userid', $userid);
+  $query = $this->db->get();
+
+  //this will return multiple rows or object of arrays
+  //return $query->result();
+  // you need to send only single row
+    return $query->row();
+  }
 }
