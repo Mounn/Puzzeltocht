@@ -117,15 +117,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </style>
 
 <div id="map-canvas"></div>
-
+<pre>
+  <?=print_r($getlocatie)?></pre>
 <script>
 
-  var locations = [
-  ['<?php foreach ($getinformatie as $row){ ?><?php } ?>' + '<div id="puzzell">' + '<p><?php echo $row->id;?></p>' + '<h1><?php echo $row->titel;?></h1>' + '<p><?php echo $row->informatie;?></p>' + '<p><img style="width:200px;height:130px;" src="<?php echo $row->foto; ?>" /></p></div>' + '<button onclick="javascript:quiz();">Starttt</button>' + '<?php foreach ($getlocatie as $row2){ ?><?php } ?>',     <?php echo $row2->lat;?>,  <?php echo $row2->long;?>],
+  var locations = [<?php foreach ($getlocatie as $row){ ?>
+  ['<div id="puzzell">' + '<h1><?php echo $row->titel;?></h1>' + '<p><?php echo $row->informatie;?></p>' + '<p><img style="width:200px;height:130px;" src="<?php echo $row->foto; ?>" /></p></div>' + '<button onclick="javascript:quiz();">Start</button>',     <?php echo $row->lat;?>,  <?php echo $row->long;?>],<?php } ?>
 
-  ['<div id="puzzell">' + '<p><?php echo $row->id;?></p>' + '<h1><?php echo $row->titel;?></h1>' + '<p><?php echo $row->informatie;?></p>' + '<p><img style="width:200px;height:130px;" src="<?php echo $row->foto; ?>" /></p></div>' + '<button onclick="javascript:quiz();">Start</button>', 51.800342,  4.669597],
-
-  ["ewa", 51.800142, 4.668297]
 ];
 var map;
 
@@ -251,7 +249,6 @@ function save(at) {
        + '[' + lat +','+ lng +','+ pre +','+ time +']\n';
 }
 
-/*
 
       function autoUpdate() {
   navigator.geolocation.getCurrentPosition(function(position) {  
@@ -279,7 +276,7 @@ function save(at) {
 }
 
 autoUpdate();
-*/
+
     </script>
 
 
@@ -305,7 +302,35 @@ function quiz(){
 </div>
 </div>
 
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+      <h4>Score van alle users</h4>
+      <hr/>
+      <?php foreach ($getlocatie as $row){ ?><?php } ?> 
+    <table id="rankings" border="1">  
+        <tbody>  
+           <tr>  
+              <td class="rank">long</td> 
+              <td class="rank">titel</td>
+              <td class="rank">foto</td> 
+           </tr>     
+           <?php  
+           foreach ($getlocatie as $row)  
+           {  
+              ?><tr>  
+              <td class="nothing"><?php echo $row->long;?> <?php echo $row->lat;?></td>  
+              <td class="nothing"><?php echo $row->titel;?></td> 
+              <td class="first"><?php echo $row->foto;?></td>  
+              </tr>  
+           <?php } ?>  
+        </tbody>
+    </table>
+      
+      </div>
 
+    </div>
+  </div>  
 
   <form method="post" action="<?php echo base_url();?>">
   <input type="submit" value="Hoofd menu">
@@ -319,3 +344,6 @@ function quiz(){
 </html>
 
 
+    <?php foreach($getlocatie as $row) { ?>
+        <p><?php echo $row->titel;?></p>
+        <?php } ?>

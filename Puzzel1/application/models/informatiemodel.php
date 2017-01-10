@@ -26,21 +26,16 @@ class InformatieModel extends CI_Model
   }
   */
 
-  public function GetInformatie(){
-    return $this->db->get('informatie')->result();
-
-  }
-
 public function GetLocatie(){
     return $this->db->get('locations')->result();
 
   }
 
-
-  function get_information_by_id($id)
+/*
+  function get_locatie_by_id($id)
   {
     $this->db->where('id', $id);
-    $query = $this->db->get('informatie');
+    $query = $this->db->get('locations');
     return $query->result();
   }
   
@@ -60,4 +55,6 @@ public function my_data()
   // you need to send only single row
     return $query->row();
   }
+
+*/
 }

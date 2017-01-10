@@ -37,12 +37,11 @@ class Welcome extends CI_Controller {
 	public function index()
 	{
 		$this->load->view('voorpagina');
-		$this->load->helper('url');
+	
 
 	}
 
 	public function puzzeltocht(){
-		$data['getinformatie'] = $this->InformatieModel->GetInformatie();
 		$data['getlocatie'] = $this->InformatieModel->GetLocatie();
 		$this->load->view('puzzeltocht', $data);
 
